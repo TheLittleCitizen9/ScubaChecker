@@ -9,17 +9,11 @@ namespace ScubaChecker
 {
     public class Serializer<T> : ISerializer<T>
     {
-        public Serializer()
-        {
-            
-        }
-
-
         Stream ISerializer<T>.Serialize(T[] testsToSerialize)
         {
             MemoryStream stream = new MemoryStream();
-            XmlSerializer x = new XmlSerializer(typeof(T));
-            x.Serialize(stream, testsToSerialize);
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T[]));
+            xmlSerializer.Serialize(stream, testsToSerialize);
             return stream;
         }
     }
